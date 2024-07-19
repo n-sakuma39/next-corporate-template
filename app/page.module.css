@@ -34,7 +34,6 @@
   z-index: -1;
 }
 
-/* NEWS */
 .news {
   position: relative;
   background-color: #fff;
@@ -62,11 +61,13 @@
     font-size: 2rem;
     text-align: left;
   }
+
   .description {
     text-align: center;
     font-size: 0.9rem;
     text-align: left;
   }
+
   .bgimg {
     position: absolute;
     top: 0;
@@ -74,17 +75,15 @@
     width: auto;
     height: 600px;
     object-fit: cover;
-    object-position: right;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: -1;
   }
 
-  /* NEWS */
   .news {
-    width: calc(100% -32px);
-    padding: 16px 32px;
+    width: calc(100% - 32px);
+    padding: 16px 24px;
   }
 
   .newsLink {
