@@ -72,3 +72,16 @@ export const getNewsDetail = async (
   });
   return detailData;
 };
+
+// ニュースカテゴリー一覧を表示する関数
+export const getCategoryDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client.getListDetail<Category>({
+    endpoint: "categories",
+    contentId,
+    queries,
+  });
+  return detailData;
+};
