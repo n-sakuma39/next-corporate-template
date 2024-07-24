@@ -1,8 +1,6 @@
 "use client";
-
 import { useFormState } from "react-dom";
 import styles from "./index.module.css";
-import { log } from "console";
 import { createContactData } from "@/app/_actions/contact";
 
 const initialState = {

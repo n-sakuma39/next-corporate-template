@@ -6,7 +6,6 @@ function validateEmail(email: string) {
 }
 
 export async function createContactData(_prevState: any, formData: FormData) {
-  // formのname属性ごとにformData.get()で値を取り出す
   const rawFormData = {
     lastname: formData.get("lastname") as string,
     firstname: formData.get("firstname") as string,
@@ -52,54 +51,58 @@ export async function createContactData(_prevState: any, formData: FormData) {
     };
   }
 
-  const result = await fetch(
-    `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fields: [
-          {
-            objectTypeId: "0-1",
-            name: "lastname",
-            value: rawFormData.lastname,
-          },
-          {
-            objectTypeId: "0-1",
-            name: "firstname",
-            value: rawFormData.firstname,
-          },
-          {
-            objectTypeId: "0-1",
-            name: "company",
-            value: rawFormData.company,
-          },
-          {
-            objectTypeId: "0-1",
-            name: "email",
-            value: rawFormData.email,
-          },
-          {
-            objectTypeId: "0-1",
-            name: "message",
-            value: rawFormData.message,
-          },
-        ],
-      }),
-    }
-  );
-
   try {
+    const result = await fetch(
+      `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fields: [
+            {
+              objectTypeId: "0-1",
+              name: "lastname",
+              value: rawFormData.lastname,
+            },
+            {
+              objectTypeId: "0-1",
+              name: "firstname",
+              value: rawFormData.firstname,
+            },
+            {
+              objectTypeId: "0-1",
+              name: "company",
+              value: rawFormData.company,
+            },
+            { objectTypeId: "0-1", name: "email", value: rawFormData.email },
+            {
+              objectTypeId: "0-1",
+              name: "message",
+              value: rawFormData.message,
+            },
+          ],
+        }),
+      }
+    );
+
+    if (!result.ok) {
+      const errorData = await result.json();
+      console.error("HubSpot API Error:", errorData);
+      return {
+        status: "error",
+        message: "お問い合わせに失敗しました",
+      };
+    }
+
     await result.json();
+    return { status: "success", message: "OK" };
   } catch (e) {
-    console.log(e);
+    console.error("Fetch Error:", e);
     return {
       status: "error",
       message: "お問い合わせに失敗しました",
     };
   }
-
-  return { status: "success", message: "OK" };
 }
