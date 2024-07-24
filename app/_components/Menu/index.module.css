@@ -22,12 +22,18 @@
     bottom: 0;
     background-color: var(--color-bg-painted);
     color: var(--color-text-unpainted);
-    padding: 24px 16px;
+    padding: 55px 16px;
   }
 
   .items {
     flex-direction: column;
-    gap: 24px;
+    gap: 10px;
+  }
+
+  .items a {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid #fff;
   }
 
   .button {

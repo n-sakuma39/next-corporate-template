@@ -24,7 +24,7 @@ export default function Menu() {
           </li>
         </ul>
         <button className={cx(styles.button, styles.close)} onClick={close}>
-          <Image src="/menu.svg" alt="メニュー" width={24} height={24} />
+          <Image src="/close.svg" alt="メニュー" width={24} height={24} />
         </button>
       </nav>
 

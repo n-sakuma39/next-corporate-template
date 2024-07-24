@@ -17,7 +17,7 @@
   align-items: center;
   flex-shrink: 1;
   gap: 24px;
-  margin-bottom: 64px;
+  margin-bottom: 30px;
 }
 
 .categoryLink {
@@ -27,7 +27,7 @@
 .thumbnail {
   width: 100%;
   height: auto;
-  margin-bottom: 64px;
+  margin-bottom: 30px;
 }
 
 .content *:first-child {
